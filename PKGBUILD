@@ -29,4 +29,7 @@ package() {
 
     install -Dm644 "${srcdir}/volla-yggdrasil-post-install/boot.img" -t "${pkgdir}/boot/"
     install -Dm644 "${srcdir}/volla-yggdrasil-post-install/dtbo.img" -t "${pkgdir}/boot/"
+
+    cp -r "${srcdir}/volla-yggdrasil-post-install/vendor-overlay" "${pkgdir}/opt/volla-yggdrasil-post-install/"
+    ln -s "/opt/volla-yggdrasil-post-install/vendor-overlay" "${pkgdir}/usr/lib/droid-vendor-overlay"
 }
