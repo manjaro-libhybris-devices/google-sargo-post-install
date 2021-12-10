@@ -11,7 +11,7 @@ url="https://www.manjaro.org"
 license=('GPL')
 depends=('gzip' 'glibc-locales' 'wget' 'systemd')
 makedepends=('git')
-source=("volla-yggdrasil-post-install::git+https://github.com/manjaro-libhybris/volla-yggdrisl-post-install.git")
+source=("volla-yggdrasil-post-install::git+https://github.com/manjaro-libhybris/volla-yggdrasil-post-install.git")
 install=$pkgname.install
 md5sums=('SKIP')
 
