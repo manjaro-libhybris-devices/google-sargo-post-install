@@ -24,7 +24,7 @@ package() {
     install -d "${pkgdir}/var/lib/"
     cp -r "${srcdir}/volla-yggdrasil-post-install/modules" -t "${pkgdir}/var/lib"
 
-    install -d "${pkgdir}/etc/"
+    install -Dm644 "${srcdir}/volla-yggdrasil-post-install/phoc.ini" -t "${pkgdir}/etc/phosh/"
     cp -r "${srcdir}/volla-yggdrasil-post-install/udev" -t "${pkgdir}/etc"
     cp -r "${srcdir}/volla-yggdrasil-post-install/modules-load.d" -t "${pkgdir}/etc"
 
