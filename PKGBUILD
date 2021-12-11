@@ -22,9 +22,7 @@ package() {
     install -Dm644 "${srcdir}/volla-yggdrasil-post-install/wifi-fix.service" -t "${pkgdir}/usr/lib/systemd/system/"
     install -Dm644 "${srcdir}/volla-yggdrasil-post-install/android.conf" -t "${pkgdir}/usr/lib/sysusers.d/"
     install -Dm644 "${srcdir}/volla-yggdrasil-post-install/lomiri-gtk.css" "${pkgdir}/opt/volla-yggdrasil-post-install/lomiri/gtk.css"
-    
-    install -d "${pkgdir}/var/lib/"
-    cp -r "${srcdir}/volla-yggdrasil-post-install/modules" -t "${pkgdir}/var/lib"
+    cp -r "${srcdir}/volla-yggdrasil-post-install/modules" "${pkgdir}/usr/lib"
 
     install -Dm644 "${srcdir}/volla-yggdrasil-post-install/phoc.ini" -t "${pkgdir}/etc/phosh/"
     cp -r "${srcdir}/volla-yggdrasil-post-install/udev" -t "${pkgdir}/etc"
