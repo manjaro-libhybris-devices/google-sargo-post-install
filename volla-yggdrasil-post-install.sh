@@ -17,7 +17,7 @@ echo "123456" > /tmp/password
 echo "root" > /tmp/rootpassword  
 if [ ! -f /usr/bin/pico-wizard ]; then
     groupadd --gid 32011 $(cat /tmp/user)
-    useradd --uid 32011 --gid 32011 -m -g users -G wheel,sys,audio,input,video,storage,lp,network,users,power,rfkill,system,radio,android_input,android_graphics,android_audio -p $(openssl passwd -6 $(cat /tmp/password)) \
+    useradd --uid 32011 --gid 32011 -m -g users -G autologin,wheel,sys,audio,input,video,storage,lp,network,users,power,rfkill,system,radio,android_input,android_graphics,android_audio -p $(openssl passwd -6 $(cat /tmp/password)) \
     -s /bin/bash $(cat /tmp/user) 1> /dev/null 2>&1
 fi
 awk -i inplace -F: "BEGIN {OFS=FS;} \$1 == \"root\" {\$2=\"$(openssl passwd -6 $(cat /tmp/rootpassword))\"} 1" /etc/shadow 1> /dev/null 2>&1
