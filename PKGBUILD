@@ -18,6 +18,7 @@ md5sums=('SKIP')
 package() {
     install -Dm755 "${srcdir}/volla-yggdrasil-post-install/volla-yggdrasil-post-install" -t "${pkgdir}/usr/bin/"
     install -Dm644 "${srcdir}/volla-yggdrasil-post-install/volla-yggdrasil-post-install.service" -t "${pkgdir}/usr/lib/systemd/system/"
+    install -Dm644 "${srcdir}/volla-yggdrasil-post-install/wifi-fix.service" -t "${pkgdir}/usr/lib/systemd/system/"
     install -Dm644 "${srcdir}/volla-yggdrasil-post-install/android.conf" -t "${pkgdir}/usr/lib/sysusers.d/"
     install -Dm644 "${srcdir}/volla-yggdrasil-post-install/lomiri-gtk.css" "${pkgdir}/opt/volla-yggdrasil-post-install/lomiri/gtk.css"
     
