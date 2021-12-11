@@ -16,6 +16,7 @@ install=$pkgname.install
 md5sums=('SKIP')
 
 package() {
+    mv "${srcdir}/volla-yggdrasil-post-install/volla-yggdrasil-post-install.sh" "${srcdir}/volla-yggdrasil-post-install/volla-yggdrasil-post-install"
     install -Dm755 "${srcdir}/volla-yggdrasil-post-install/volla-yggdrasil-post-install" -t "${pkgdir}/usr/bin/"
     install -Dm644 "${srcdir}/volla-yggdrasil-post-install/volla-yggdrasil-post-install.service" -t "${pkgdir}/usr/lib/systemd/system/"
     install -Dm644 "${srcdir}/volla-yggdrasil-post-install/wifi-fix.service" -t "${pkgdir}/usr/lib/systemd/system/"
