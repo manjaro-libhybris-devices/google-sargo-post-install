@@ -36,5 +36,5 @@ package() {
     cp -r "${srcdir}/volla-yggdrasil-post-install/vendor-overlay" "${pkgdir}/opt/volla-yggdrasil-post-install/"
     ln -s "/opt/volla-yggdrasil-post-install/vendor-overlay" "${pkgdir}/opt/halium-overlay/vendor"
 
-    install -Dm644 "${srcdir}/volla-yggdrasil-post-install/90_manjaro.gschema.override" -t "${pkgdir}/usr/share/glib-2.0/schemas"
+    install -Dm644 "${srcdir}/volla-yggdrasil-post-install/90_manjaro.gschema.override" -t "${pkgdir}/usr/share/glib-2.0/schemas/"
 }
