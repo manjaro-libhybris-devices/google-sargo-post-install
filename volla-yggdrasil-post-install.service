@@ -3,7 +3,7 @@ Description=Volla Phone Post Install.
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/volla-yggdrsil-post-install
+ExecStart=/usr/bin/volla-yggdrasil-post-install
 
 [Install]
 WantedBy=default.target
