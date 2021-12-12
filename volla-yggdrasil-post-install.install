@@ -24,7 +24,7 @@ post_upgrade() {
     tar -xf ./halium_halium_arm64.tar.xz system/var/lib/lxc/android/android-rootfs.img --strip-components 5 --overwrite
     rm -f ./halium_halium_arm64.tar.xz
 
-  # Flash kernel
+  # Flash kernel (following script modified from the one used by Droidian)
   # If we should flash the kernel, do it
   if [ -e "/boot/boot.img" ]; then
     echo "Kernel found, flashing"
