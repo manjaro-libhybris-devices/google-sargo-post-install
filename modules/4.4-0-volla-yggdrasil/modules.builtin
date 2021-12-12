@@ -470,6 +470,7 @@ kernel/net/sched/sch_ingress.ko
 kernel/net/sched/cls_u32.ko
 kernel/net/sched/cls_fw.ko
 kernel/net/sched/cls_flow.ko
+kernel/net/sched/cls_cgroup.ko
 kernel/net/sched/em_u32.ko
 kernel/net/unix/unix.ko
 kernel/net/unix/unix_diag.ko
