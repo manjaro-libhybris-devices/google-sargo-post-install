@@ -1,0 +1,97 @@
+post_install() {
+  # Disable systemd-resolved
+    sed -i s/"enable systemd-resolved.service"/"disable systemd-resolved.service"/g /usr/lib/systemd/system-preset/90-systemd.preset
+  # Fix GTK in Lomiri
+    if [ -e /usr/bin/unity8 ]; then
+        install -Dm644 "/opt/halium9-post-install/lomiri/gtk.css" "/etc/skel/.config/gtk-3.0/gtk.css"
+    fi
+    touch /.writable_image
+  # Pull an Android rootfs
+    mkdir -p /var/lib/lxc/android/
+    cd /var/lib/lxc/android/
+    wget https://ci.ubports.com/job/UBportsCommunityPortsJenkinsCI/job/ubports%252Fcommunity-ports%252Fjenkins-ci%252Fsargo/job/main/lastSuccessfulBuild/artifact/halium_sargo.tar.xz -O ./halium_halium_arm64.tar.xz
+    tar -xf ./halium_halium_arm64.tar.xz system/var/lib/lxc/android/android-rootfs.img --strip-components 5 --overwrite
+    rm -f ./halium_halium_arm64.tar.xz
+}
+
+post_upgrade() {
+  # Set chassis
+    hostnamectl set-chassis handset  
+  # Pull an Android rootfs
+    mkdir -p /var/lib/lxc/android/
+    cd /var/lib/lxc/android/
+    wget https://ci.ubports.com/job/UBportsCommunityPortsJenkinsCI/job/ubports%252Fcommunity-ports%252Fjenkins-ci%252Fsargo/job/main/lastSuccessfulBuild/artifact/halium_sargo.tar.xz -O ./halium_halium_arm64.tar.xz
+    tar -xf ./halium_halium_arm64.tar.xz system/var/lib/lxc/android/android-rootfs.img --strip-components 5 --overwrite
+    rm -f ./halium_halium_arm64.tar.xz
+
+  # Flash kernel (following script modified from the one used by Droidian)
+  # If we should flash the kernel, do it
+  if [ -e "/boot/boot.img" ]; then
+    echo "Kernel found, flashing"
+
+    if [ -e "/boot/dtbo.img" ]; then
+      has_dtbo="yes"
+    else
+      has_dtbo="no"
+    fi
+
+    if [ -e "/boot/vbmeta.img" ]; then
+      has_vbmeta="yes"
+    else
+      has_vbmeta="no"
+    fi
+
+    current_slot=$(grep -o 'androidboot\.slot_suffix=_[a-b]' /proc/cmdline)
+    case "${current_slot}" in
+      "androidboot.slot_suffix=_a")
+        target_partition="boot_a"
+        target_dtbo_partition="dtbo_a"
+        target_vbmeta_partition="vbmeta_a"
+        ;;
+      "androidboot.slot_suffix=_b")
+        target_partition="boot_b"
+        target_dtbo_partition="dtbo_b"
+        target_vbmeta_partition="vbmeta_b"
+        ;;
+      "")
+        # No A/B
+        target_partition="boot"
+        target_dtbo_partition="dtbo"
+        target_vbmeta_partition="vbmeta"
+        ;;
+      *)
+        error "Unknown error while searching for a boot partition, exiting"
+        ;;
+	  esac
+
+    partition=$(find /dev/disk/by-partlabel -name ${target_partition} | head -n 1)
+    if [ -n "${partition}" ]; then
+      echo "Found boot partition for current slot ${partition}"
+
+      dd if=/boot/boot.img of=${partition} && echo "Kernel flashed"
+    fi
+
+    if [ "${has_dtbo}" = "yes" ]; then
+      echo "DTBO found, flashing"
+
+      partition=$(find /dev/disk/by-partlabel -name ${target_dtbo_partition} | head -n 1)
+      if [ -n "${partition}" ]; then
+        echo "Found DTBO partition for current slot ${partition}"
+
+        dd if=/boot/dtbo.img of=${partition} && echo "DTBO flashed"
+      fi
+    fi
+
+    if [ "${has_vbmeta" = "yes" ]; then
+      echo "VBMETA found, flashing"
+
+      partition=$(find /dev/disk/by-partlabel -name ${target_vbmeta_partition} | head -n 1)
+      if [ -n "${partition}" ]; then
+        echo "Found VBMETA partition for current slot ${partition}"
+
+        dd if=/boot/vbmeta.img of=${partition} && echo "VBMETA flashed"
+      fi
+    fi
+
+  fi
+}

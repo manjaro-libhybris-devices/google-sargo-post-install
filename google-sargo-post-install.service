@@ -1,0 +1,9 @@
+[Unit]
+Description=Google Pixel 3a Post Install.
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/google-sargo-post-install
+
+[Install]
+WantedBy=default.target
