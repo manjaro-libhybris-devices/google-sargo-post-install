@@ -1,13 +1,13 @@
-# Maintainer: Erik Inkinen <erik.inkinen@gmail.com>
+# Maintainer: Bardia Moshiri <fakeshell@bardia.tech>
 
 pkgname=google-sargo-post-install
 provides=(halium9-post-install)
 conflicts=(halium9-post-install)
 pkgver=20$(date +%y%m%d)
 pkgrel=7
-pkgdesc="Manjaro ARM's Google Pixel 3a post install script"
+pkgdesc="Manjaro libhybris post install script for google sargo/bonito"
 arch=('any')
-url="https://www.manjaro.org"
+url="https://github.com/manjaro-libhybris/google-sargo-post-install"
 license=('GPL')
 depends=('gzip' 'glibc-locales' 'wget' 'systemd')
 makedepends=('git')
