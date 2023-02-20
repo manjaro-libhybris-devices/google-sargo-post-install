@@ -8,13 +8,13 @@ hostnamectl set-chassis handset
 systemd-sysusers
 
 # Add /system symlink
-ln -s /android/system /system 
+ln -s /android/system /system
 
 # Add users
 [[ $(pacman -Q plasma-mobile-settings 2>/dev/null) ]] && USER='kde' || USER='manjaro'
 echo "$USER" > /tmp/user
 echo "123456" > /tmp/password
-echo "root" > /tmp/rootpassword  
+echo "root" > /tmp/rootpassword
 if [ ! -f /usr/bin/pico-wizard ]; then
     groupadd --gid 32011 $(cat /tmp/user)
     useradd --uid 32011 --gid 32011 -m -g users -G autologin,wheel,sys,audio,input,video,storage,lp,network,users,power,rfkill,system,radio,android_input,android_graphics,android_audio -p $(openssl passwd -6 $(cat /tmp/password)) \
@@ -34,6 +34,3 @@ systemctl disable google-sargo-post-install.service
 
 # Start phosh
 [[ -e /usr/bin/phosh ]] && systemctl start phosh
-
-# Setup Waydroid
-[[ -e /usr/bin/setup-waydroid ]] && setup-waydroid

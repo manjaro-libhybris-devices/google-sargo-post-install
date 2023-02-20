@@ -20,7 +20,6 @@ package() {
     install -Dm755 "${srcdir}/google-sargo-post-install/google-sargo-post-install" -t "${pkgdir}/usr/bin/"
     install -Dm644 "${srcdir}/google-sargo-post-install/google-sargo-post-install.service" -t "${pkgdir}/usr/lib/systemd/system/"
     install -Dm644 "${srcdir}/google-sargo-post-install/android.conf" -t "${pkgdir}/usr/lib/sysusers.d/"
-    install -Dm644 "${srcdir}/google-sargo-post-install/lomiri-gtk.css" "${pkgdir}/opt/google-sargo-post-install/lomiri/gtk.css"
     install -Dm644 "${srcdir}/google-sargo-post-install/ril_subscription.conf" "${pkgdir}/etc/ofono/ril_subscription.conf"
 
     install -Dm644 "${srcdir}/google-sargo-post-install/phoc.ini" -t "${pkgdir}/etc/phosh/"

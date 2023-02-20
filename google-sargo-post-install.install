@@ -1,28 +1,11 @@
 post_install() {
   # Disable systemd-resolved
     sed -i s/"enable systemd-resolved.service"/"disable systemd-resolved.service"/g /usr/lib/systemd/system-preset/90-systemd.preset
-  # Fix GTK in Lomiri
-    if [ -e /usr/bin/unity8 ]; then
-        install -Dm644 "/opt/halium9-post-install/lomiri/gtk.css" "/etc/skel/.config/gtk-3.0/gtk.css"
-    fi
-    touch /.writable_image
-  # Pull an Android rootfs
-    mkdir -p /var/lib/lxc/android/
-    cd /var/lib/lxc/android/
-    wget https://ci.ubports.com/job/UBportsCommunityPortsJenkinsCI/job/ubports%252Fcommunity-ports%252Fjenkins-ci%252Fsargo/job/main/lastSuccessfulBuild/artifact/halium_sargo.tar.xz -O ./halium_halium_arm64.tar.xz
-    tar -xf ./halium_halium_arm64.tar.xz system/var/lib/lxc/android/android-rootfs.img --strip-components 5 --overwrite
-    rm -f ./halium_halium_arm64.tar.xz
 }
 
 post_upgrade() {
   # Set chassis
     hostnamectl set-chassis handset  
-  # Pull an Android rootfs
-    mkdir -p /var/lib/lxc/android/
-    cd /var/lib/lxc/android/
-    wget https://ci.ubports.com/job/UBportsCommunityPortsJenkinsCI/job/ubports%252Fcommunity-ports%252Fjenkins-ci%252Fsargo/job/main/lastSuccessfulBuild/artifact/halium_sargo.tar.xz -O ./halium_halium_arm64.tar.xz
-    tar -xf ./halium_halium_arm64.tar.xz system/var/lib/lxc/android/android-rootfs.img --strip-components 5 --overwrite
-    rm -f ./halium_halium_arm64.tar.xz
 
   # Flash kernel (following script modified from the one used by Droidian)
   # If we should flash the kernel, do it
