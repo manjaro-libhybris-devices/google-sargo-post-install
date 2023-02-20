@@ -3,8 +3,8 @@
 pkgname=google-sargo-post-install
 provides=(halium9-post-install)
 conflicts=(halium9-post-install)
-pkgver=20$(date +%y%m%d)
-pkgrel=7
+pkgver=21$(date +%y%m%d)
+pkgrel=2
 pkgdesc="Manjaro libhybris post install script for google sargo/bonito"
 arch=('any')
 url="https://github.com/manjaro-libhybris/google-sargo-post-install"
