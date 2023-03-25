@@ -29,6 +29,9 @@ rm /tmp/user /tmp/password /tmp/rootpassword
 # Set locales
 localectl set-locale "en_US.UTF-8"
 
+# Set the manjaro theme for plymouth
+plymouth-set-default-theme manjaro
+
 # Disable this service, so it only gets run on first boot
 systemctl disable google-sargo-post-install.service
 
