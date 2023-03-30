@@ -1,5 +1,5 @@
 #!/bin/sh
-# This is the post install script for Halium 9 devices!
+# This is the post install script for Google sargo/bonito!
 
 # Set chassis
 hostnamectl set-chassis handset
@@ -31,6 +31,9 @@ localectl set-locale "en_US.UTF-8"
 
 # Set the manjaro theme for plymouth
 plymouth-set-default-theme manjaro
+
+# Gloabally enable audiosystem-passthrough on first boot
+systemctl --global enable audiosystem-passthrough
 
 # Disable this service, so it only gets run on first boot
 systemctl disable google-sargo-post-install.service
