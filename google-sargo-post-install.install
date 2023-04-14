@@ -65,7 +65,7 @@ post_upgrade() {
       fi
     fi
 
-    if [ "${has_vbmeta" = "yes" ]; then
+    if [ "${has_vbmeta}" = "yes" ]; then
       echo "VBMETA found, flashing"
 
       partition=$(find /dev/disk/by-partlabel -name ${target_vbmeta_partition} | head -n 1)
