@@ -7,11 +7,11 @@ pkgver=21$(date +%y%m%d)
 pkgrel=4
 pkgdesc="Manjaro libhybris post install script for google sargo/bonito"
 arch=('any')
-url="https://github.com/manjaro-libhybris/google-sargo-post-install"
+url="https://github.com/manjaro-libhybris-devices/google-sargo-post-install"
 license=('GPL')
 depends=('gzip' 'glibc-locales' 'wget' 'systemd')
 makedepends=('git')
-source=("google-sargo-post-install::git+https://github.com/manjaro-libhybris/google-sargo-post-install.git")
+source=("google-sargo-post-install::git+https://github.com/manjaro-libhybris-devices/google-sargo-post-install.git")
 install=$pkgname.install
 md5sums=('SKIP')
 
