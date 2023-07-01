@@ -34,7 +34,4 @@ package() {
     install -Dm644 "${srcdir}/google-sargo-post-install/boot.img" -t "${pkgdir}/boot/"
     install -Dm644 "${srcdir}/google-sargo-post-install/dtbo.img" -t "${pkgdir}/boot/"
     install -Dm644 "${srcdir}/google-sargo-post-install/vbmeta.img" -t "${pkgdir}/boot/"
-
-    mkdir -p "${pkgdir}/usr/share/glib-2.0/schemas/"
-    install -Dm644 "${srcdir}/google-sargo-post-install/90_manjaro.gschema.override" -t "${pkgdir}/usr/share/glib-2.0/schemas/"
 }
